@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="StartList2.Master.cs" Inherits="WebApplication1.Site3" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+
+
+    a:link {
+        color: #333;
+    }
+
+    a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    .site-title {
+    color: #c8c8c8;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+}
+
+td {
+    padding: 0.25em 2em 0.25em 0em;
+    border: 0 none;
+}
+
+    </style>
+</head>
+<body>
+    <form id="form2" runat="server">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    <div>
+    </div>
+                <p class="site-title">
+                    <a runat="server" href="~/">&nbsp;logo </a>&nbsp;</p>
+            <asp:LoginView runat="server" ViewStateMode="Disabled" ID="LoginView1">
+                <AnonymousTemplate>
+                    <ul>
+                        <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
+                        <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                    </ul>
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    <p>
+                        Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                        <asp:LoginName runat="server" CssClass="username" />
+                        </a>!
+                        <a href="javascript:__doPostBack('ctl00$ctl00$ctl25$ctl00','')">Выход</a></p>
+                </LoggedInTemplate>
+        </asp:LoginView>
+    </form>
+                    <ul id="menu">
+                        <li><a href="~/">Стартовая страница</a></li>
+                        <li><a href="~/">Подать объявление</a></li>
+                        <li><a href="~/">Мой аккаунт</a></li>
+                        <li><a href="~/">Мои объявления</a></li>
+                        <li><a href="~/">Поиск</a></li>
+                        <li><a href="~/">Избранное</a></li>
+                        <li><a runat="server" href="~/About">О сайте</a></li>
+                        <li><a runat="server" href="~/Contact">Контакты</a></li>
+                    </ul>
+                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+    <form id="form1" runat="server">
+    <div>
+    </div>
+    </form>
+</body>
+</html>

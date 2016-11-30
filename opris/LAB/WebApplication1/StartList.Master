@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="StartList.Master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+}
+
+td {
+    padding: 0.25em 2em 0.25em 0em;
+    border: 0 none;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    }
+
+    a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    .site-title {
+    color: #c8c8c8;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 0;
+}
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    <div>
+    </div>
+                <p class="site-title">
+                    <a runat="server" href="~/">&nbsp;logo </a>&nbsp;</p>
+            <asp:LoginView runat="server" ViewStateMode="Disabled" ID="LoginView1">
+                <AnonymousTemplate>
+                    <ul>
+                        <li><a href="~/Account/Register">Регистрация</a></li>
+                        <li><a href="~/Account/Login">Вход</a></li>
+                    </ul>
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    <p>
+                        Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                        <asp:LoginName runat="server" CssClass="username" />
+                        </a>!
+                        <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                    </p>
+                </LoggedInTemplate>
+        </asp:LoginView>
+    </form>
+                    <ul id="menu">
+                        <li>Стартовая страниа</li>
+                        <li><a href="~/">Поиск</a></li>
+                        <li><a href="~/About">О сайте</a></li>
+                        <li>Контакты</li>
+                    </ul>
+                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            </body>
+</html>
