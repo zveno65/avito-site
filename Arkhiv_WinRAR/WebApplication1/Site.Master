@@ -16,6 +16,11 @@
 </head>
 <body>
     <form runat="server">
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a runat="server" href="~/">Авито</a> <a id="loginLink" runat="server" href="~/Account/Login">
     <asp:ScriptManager runat="server">
         <Scripts>
             <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
@@ -37,11 +42,7 @@
 
         </Scripts>
     </asp:ScriptManager>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a runat="server" href="~/">Авито</a>
+                    </a>
                 </p>
             </div>
             <div class="float-right">

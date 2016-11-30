@@ -25,7 +25,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div style="height: 148px">
         <asp:ImageButton runat="server" ImageUrl="~/Images/orderedList0.png" CssClass="leftimg"  Width="109px" ></asp:ImageButton>
-        <p >Продавец</p>
+        <p >Прадавец</p>
         <p>товар</p>
     </div>
     <div style="height: 148px">
