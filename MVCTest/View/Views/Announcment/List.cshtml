@@ -1,0 +1,18 @@
+﻿@using Domain.Entities;
+
+@model IEnumerable<An>
+
+@{
+    ViewBag.Title = "Объявления";
+}
+
+@foreach (An announcment in Model)
+{
+    <div>
+        <h3>@announcment.name</h3>
+        <p>@announcment.price</p>
+        <p>@announcment.description </p>
+    </div>
+    <hr />
+}
+

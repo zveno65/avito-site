@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище OPRISModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id_ac" />
+    </Key>
+    <Property Name="id_ac" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="e_mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="otch" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="An">
+    <Key>
+      <PropertyRef Name="An_id" />
+    </Key>
+    <Property Name="An_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_account" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_category" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dateStart" Type="date" Nullable="false" />
+    <Property Name="dateFinish" Type="date" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id_cat" />
+    </Key>
+    <Property Name="id_cat" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Liked">
+    <Key>
+      <PropertyRef Name="id_lik" />
+    </Key>
+    <Property Name="id_lik" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_account" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_an" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="id_ph" />
+    </Key>
+    <Property Name="id_ph" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_an" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id_prod" />
+    </Key>
+    <Property Name="id_prod" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_category" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_An_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="An" Type="Self.An" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="An">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liked_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_ac" />
+      </Principal>
+      <Dependent Role="Liked">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liked_Promo">
+    <End Role="An" Type="Self.An" Multiplicity="1" />
+    <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="An">
+        <PropertyRef Name="An_id" />
+      </Principal>
+      <Dependent Role="Liked">
+        <PropertyRef Name="id_an" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photo_An">
+    <End Role="An" Type="Self.An" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="An">
+        <PropertyRef Name="An_id" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="id_an" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photo_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_prod" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="id_an" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Promo_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="An" Type="Self.An" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_ac" />
+      </Principal>
+      <Dependent Role="An">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище OPRISModelContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="An" EntityType="Self.An" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Liked" EntityType="Self.Liked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_An_Category" Association="Self.FK_An_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="An" EntitySet="An" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liked_Account" Association="Self.FK_Liked_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Liked" EntitySet="Liked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liked_Promo" Association="Self.FK_Liked_Promo">
+      <End Role="An" EntitySet="An" />
+      <End Role="Liked" EntitySet="Liked" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photo_An" Association="Self.FK_Photo_An">
+      <End Role="An" EntitySet="An" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photo_Product" Association="Self.FK_Photo_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Promo_Account" Association="Self.FK_Promo_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="An" EntitySet="An" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
