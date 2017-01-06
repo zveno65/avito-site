@@ -1,0 +1,56 @@
+﻿@model Domain.Entities.An
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_CRUDLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Подача нового объявления</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.ID)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                List<string> field = new List<string>
+                {
+                    "Account","Category","Liked","Photo","ID"
+                };
+                if (!field.Contains(property.PropertyName))
+                {
+                    <div class="form-group">
+                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+                        @if (property.PropertyName == "CategoryID")
+                        {
+                            <div>
+                                @Html.DropDownList(property.PropertyName, (SelectList)ViewBag.DropDownValues, new { @class = "btn btn-default dropdown-toggle" })
+                            </div>
+                        }
+                        else if (property.PropertyName == "Description")
+                        {
+                          @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                        }
+                        else if (property.PropertyName == "DateStart" || property.PropertyName == "DateFinish")
+                        {
+                          @Html.TextBox(property.PropertyName, null, new { @class = "form-control",type = "date" })
+                            @*<input type="date" value="yyyy-MM-dd" />*@
+                         }
+                            else
+                            {
+                                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            }
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+

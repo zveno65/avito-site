@@ -9,32 +9,45 @@ namespace Domain.Entities
     [Table("Account")]
     public partial class Account
     {
-        public Guid id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Account()
+        {
+            Liked = new HashSet<Liked>();
+            An = new HashSet<An>();
+        }
+
+        public Guid ID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string login { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string e_mail { get; set; }
+        public string E_mail { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string surname { get; set; }
+        public string Surname { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(50)]
-        public string otch { get; set; }
+        public string Otch { get; set; }
 
         [StringLength(50)]
-        public string city { get; set; }
+        public string City { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liked> Liked { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<An> An { get; set; }
     }
 }

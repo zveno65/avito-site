@@ -10,11 +10,9 @@ namespace Domain.Concrete
 {
     class EFDbContext:DbContext
     {
-        public DbSet<Account> Accounts { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            Database.SetInitializer<EFDbContext>(null);
-            base.OnModelCreating(modelBuilder);
-        }
+        public EFDbContext() : base("ModelAvito")
+        { }
+        public DbSet<An> Announcments { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

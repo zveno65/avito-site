@@ -30,7 +30,8 @@ namespace WebUI.Infrastructure
             //    new Account { login = "Privet", password  = "No", e_mail = "Ziryanov2@mail.ru"},
             //    new Account { login = "Poka", password  = "Yes", e_mail = "Ziryanov3@mail.ru"}
             //});
-            kernel.Bind<IAvitoRepository>().To<EFAviotRepository>();
+            kernel.Bind<IAnRepository>().To<EFAnRepository>();
+            kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
         }
 
         public object GetService(Type serviceType)
