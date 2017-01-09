@@ -5,17 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
     <div class="navbar navbar-inverse" role="navigation">
-        <a class="navbar-brand" href="#">Avito - онлайн-магазин</a>
+        <a class="navbar-brand" href="#">Avita - онлайн-магазин</a>
+            <div  class="row">
+                    @if (Session["UserId"] == null)
+                    {
+                        <div id="MyAnonc" class="col-xs-1"><input type="submit" class="btn btn-success disabled" value="Мои объявления" /></div>
+                        using (Html.BeginForm("Create", "Reg"))
+                        {
+                            <div id="Regg" class="col-xs-1 col-md-offset-2">
+                                <input type="submit" class="btn btn-success" value="Регистрация" />
+                            </div>
+                        }
+                        using (Html.BeginForm("Login", "Reg"))
+                        {
+                            <div id="Vhod" class="col-xs-1"><input type="submit" class="btn btn-success" value="Вход" /></div>
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("Index", "CRUD"))
+                        {
+                            <div id="MyAnonc" class="col-xs-1"><input type="submit" class="btn btn-success" value="Мои объявления" /></div>
+                        }
+                        <div id="Regg" class="col-xs-1 col-md-offset-2">
+                            <input type="submit" class="btn btn-success disabled" value="Регистрация" />
+                        </div>
+                        <div id="Vhod" class="col-xs-1"><input type="submit" class="btn btn-success disabled" value="Вход" /></div>
+                        <a class="navbar-brand pull-right" href="#">Добро пожаловать @Session["UserName"].ToString()</a>
+                        <div id="Vhod">
+                            @Html.ActionLink("Выход", "Vihod", null, new { @class = "btn btn-default" })
+                        </div>
+                    }
+            </div>
     </div>
     <div class="row panel">
         <div id="genres" class="col-xs-3">
             @Html.Action("Menu", "Nav");
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-7 col-xs-offset-1">
             @RenderBody()
         </div>
     </div>

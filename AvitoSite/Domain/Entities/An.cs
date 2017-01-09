@@ -5,7 +5,7 @@ namespace Domain.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Web.Mvc;
+
     [Table("An")]
     public partial class An
     {
@@ -16,29 +16,23 @@ namespace Domain.Entities
             Photo = new HashSet<Photo>();
         }
 
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name ="ID")]
         public Guid ID { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "AccID")]
         public Guid AccountID { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "CatID")]
+        [Display(Name = "Категория")]
         public Guid CategoryID { get; set; }
 
         [Column(TypeName = "date")]
-        [Display(Name = "начало")]
-        [Editable(false)]
+        [Display(Name = "Дата появления")]
         public DateTime DateStart { get; set; }
 
+        [Display(Name = "Дата исчезновения")]
         [Column(TypeName = "date")]
-        [Display(Name = "конец")]
         public DateTime? DateFinish { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Название")]
+        [Display(Name = "Название товара")]
         public string Name { get; set; }
 
         [Display(Name = "Цена")]
@@ -47,22 +41,14 @@ namespace Domain.Entities
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "Account")]
         public virtual Account Account { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "Category")]
         public virtual Category Category { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "Liked")]
         public virtual ICollection<Liked> Liked { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "Photo")]
         public virtual ICollection<Photo> Photo { get; set; }
     }
 }

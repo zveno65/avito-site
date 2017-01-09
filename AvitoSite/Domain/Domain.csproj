@@ -94,7 +94,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAccRepository.cs" />
     <Compile Include="Abstract\ICategoryRepository.cs" />
+    <Compile Include="Concrete\EFAccRepository.cs" />
     <Compile Include="Concrete\EFAnRepository.cs" />
     <Compile Include="Concrete\EFCategoryRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
@@ -105,7 +107,6 @@
     <Compile Include="Entities\Liked.cs" />
     <Compile Include="Entities\ModelAvito.cs" />
     <Compile Include="Entities\Photo.cs" />
-    <Compile Include="Entities\sysdiagrams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

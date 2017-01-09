@@ -1,10 +1,5 @@
 ﻿@model Domain.Entities.An
 
-@{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_CRUDLayout.cshtml";
-}
-
 <div class="panel">
     <div class="panel-heading">
         <h3>Подача нового объявления</h3>
@@ -17,7 +12,7 @@
             {
                 List<string> field = new List<string>
                 {
-                    "Account","Category","Liked","Photo","ID"
+                    "AccountID","Account","Category","Liked","Photo","id","DateStart","DateFinish"
                 };
                 if (!field.Contains(property.PropertyName))
                 {
@@ -31,17 +26,12 @@
                         }
                         else if (property.PropertyName == "Description")
                         {
-                          @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
                         }
-                        else if (property.PropertyName == "DateStart" || property.PropertyName == "DateFinish")
+                        else
                         {
-                          @Html.TextBox(property.PropertyName, null, new { @class = "form-control",type = "date" })
-                            @*<input type="date" value="yyyy-MM-dd" />*@
-                         }
-                            else
-                            {
-                                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                            }
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                        }
                     </div>
                 }
             }

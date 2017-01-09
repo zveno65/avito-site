@@ -15,7 +15,6 @@ namespace Domain.Concrete
         {
             get { return context.Announcments; }
         }
-
         public void DeleteAnnouncment(An annoncment)
         {
             An dbEntry = context.Announcments.Find(annoncment.ID);
@@ -26,7 +25,6 @@ namespace Domain.Concrete
 
             context.SaveChanges();
         }
-
         public void SaveAnnouncment(An annoncment)
         {
             if (annoncment.ID == Guid.Empty || annoncment.ID == null)
@@ -34,8 +32,7 @@ namespace Domain.Concrete
                 An a = new An();
                 a.ID = Guid.NewGuid();
                 a.CategoryID = annoncment.CategoryID;
-                Guid idd = new Guid("9B857D89-1D72-483F-8844-3C198B837C02");
-                a.AccountID = idd;
+                a.AccountID = annoncment.AccountID;
                 a.DateStart = annoncment.DateStart;
                 a.DateFinish = annoncment.DateFinish;
                 a.Name = annoncment.Name;

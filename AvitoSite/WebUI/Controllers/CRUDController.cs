@@ -13,7 +13,7 @@ namespace WebUI.Controllers
         IAnRepository repository;
         ICategoryRepository repositoryC;
 
-        public CRUDController(IAnRepository repo,ICategoryRepository repoC)
+        public CRUDController(IAnRepository repo, ICategoryRepository repoC)
         {
             repository = repo;
             repositoryC = repoC;
@@ -21,7 +21,8 @@ namespace WebUI.Controllers
 
         public ViewResult Index()
         {
-            return View(repository.Announcments);
+            IEnumerable<An> announcments = repository.Announcments.Where(a => a.AccountID.ToString() == Session["UserId"].ToString());
+            return View(announcments);
         }
 
         public ViewResult Edit(Guid id)
@@ -48,16 +49,12 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Create(An announcment)
         {
-            //if (ModelState.IsValid)
-            //{
-                repository.SaveAnnouncment(announcment);
-                TempData["message"] = string.Format("Изменение информации сохранены");
-                return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    return View(announcment);
-            //}
+            announcment.AccountID = Guid.Parse(Session["UserId"].ToString());
+            announcment.DateStart = DateTime.Now;
+            announcment.DateFinish = announcment.DateStart.AddDays(14);
+            repository.SaveAnnouncment(announcment);
+            TempData["message"] = string.Format("Изменение информации сохранены");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -80,6 +77,5 @@ namespace WebUI.Controllers
             TempData["message"] = string.Format("Объявление удалено");
             return RedirectToAction("Index");
         }
-
     }
 }

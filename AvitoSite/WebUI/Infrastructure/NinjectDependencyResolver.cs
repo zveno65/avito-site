@@ -24,13 +24,8 @@ namespace WebUI.Infrastructure
 
         private void AddBindings()
         {
-            //Mock<IAvitoRepository> mock = new Mock<IAvitoRepository>();
-            //mock.Setup(m => m.Accounts).Returns(new List<Account>
-            //{
-            //    new Account { login = "Privet", password  = "No", e_mail = "Ziryanov2@mail.ru"},
-            //    new Account { login = "Poka", password  = "Yes", e_mail = "Ziryanov3@mail.ru"}
-            //});
             kernel.Bind<IAnRepository>().To<EFAnRepository>();
+            kernel.Bind<IAccRepository>().To<EFAccRepository>();
             kernel.Bind<ICategoryRepository>().To<EFCategoryRepository>();
         }
 

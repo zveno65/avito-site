@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
 
@@ -19,6 +19,12 @@
             <div class="alert alert-success">@TempData["message"]</div>
         }
         @RenderBody()
+        <div class="panel-footer">
+            @using (Html.BeginForm("List", "Announcements"))
+            {
+                <input type="submit" class="btn btn-default" value="На стартовую страницу" />
+            }
+        </div>
     </div>
 </body>
 </html>

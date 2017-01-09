@@ -10,7 +10,7 @@ namespace Domain.Abstract
     public interface IAnRepository
     {
         IEnumerable<An> Announcments { get;}
-        void SaveAnnouncment(An annoncment);
-        void DeleteAnnouncment(An annoncment);
+        void DeleteAnnouncment(An announcement);
+        void SaveAnnouncment(An announcement);
     }
 }

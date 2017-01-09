@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
-    public class EFCategoryRepository : ICategoryRepository
+    public class EFCategoryRepository:ICategoryRepository
     {
         EFDbContext context = new EFDbContext();
         public IEnumerable<Category> Categories

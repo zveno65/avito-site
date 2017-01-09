@@ -1,0 +1,34 @@
+﻿@model Domain.Entities.Account
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_RegLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Регистрация</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.ID)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "ID" && property.PropertyName != "Liked" && property.PropertyName != "An")
+                {
+                    <div class="form-group">
+                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+                        @Html.TextBox(" ", null, new { @class = "form-control" })
+                        @Html.ValidationMessage(property.PropertyName)
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
+            @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

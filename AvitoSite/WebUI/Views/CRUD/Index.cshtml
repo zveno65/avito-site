@@ -4,77 +4,72 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_CRUDLayout.cshtml";
 }
+
 <div class="panel panel-default">
     <div class="panel-heading">
         Объявления
     </div>
     <div class="panel-body">
-    <table class="table table-striped table-condensed table-bordered">
-        <tr>
-            <th class="text-right">
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateFinish)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th class="text-right">
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th class="text-center">
-                Действия
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table table-striped table-condensed table-bordered">
             <tr>
-                <td class="text-right">
-                    @item.ID
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateStart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateFinish)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Name,"Edit",new { item.ID})
-                </td>
-                <td class="text-right">
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td class="text-center">
-                    @using (Html.BeginForm("Delete", "CRUD"))
-                    {
-                        @Html.Hidden("id",item.ID)
-                        <input type="submit" class="btn btn-default btn-xs" value="Удалить" />
-                    }
-                </td>
+                <th>
+                    Категория
+                </th>
+                <th>
+                    Дата появления объявления
+                </th>
+                <th>
+                    Дата исчезновения объявления
+                </th>
+                <th>
+                    Название товара
+                </th>
+                <th class="text-right">
+                    Цена товара
+                </th>
+                <th>
+                    Описание товара
+                </th>
+                <th class="text-center">
+                    Действия
+                </th>
             </tr>
-        }
 
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateStart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateFinish)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Name, "Edit", new { item.ID })
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "CRUD"))
+                        {
+                            @Html.Hidden("id", item.ID)
+                            <input type="submit" class="btn btn-default btn-xs" value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
     <div class="panel-footer">
-        @Html.ActionLink("Добавить", "Create",null,new { @class = "btn btn-default" })
+        @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-default" })
     </div>
 </div>
 

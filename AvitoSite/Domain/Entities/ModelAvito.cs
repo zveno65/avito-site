@@ -8,16 +8,15 @@ namespace Domain.Entities
     public partial class ModelAvito : DbContext
     {
         public ModelAvito()
-            : base("name=ModelAvito1")
+            : base("name=ModelAvito")
         {
         }
 
-        public virtual DbSet<Account> Account { get; set; }
-        public virtual DbSet<An> An { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Liked> Liked { get; set; }
-        public virtual DbSet<Photo> Photo { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<An> Ans { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Liked> Likeds { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

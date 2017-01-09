@@ -1,5 +1,6 @@
 ﻿@model Domain.Entities.An
 
+
 @{
     ViewBag.Title = "Редактирование объявлений";
     Layout = "~/Views/Shared/_CRUDLayout.cshtml";
@@ -17,7 +18,7 @@
             {
                 List<string> field = new List<string>
                 {
-                    "Account","Category","Liked","Photo","ID","AccountID","CategoryID"
+                    "AccountID","Account","Category","Liked","Photo","ID","DateStart","DateFinish","CategoryID"
                 };
                 if (!field.Contains(property.PropertyName))
                 {
@@ -25,11 +26,7 @@
                         <label>@(property.DisplayName ?? property.PropertyName)</label>
                         @if (property.PropertyName == "Description")
                         {
-                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5})
-                        }
-                        else if (property.PropertyName == "DateStart")
-                        {
-                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control", @readonly = true })
+                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
                         }
                         else
                         {
@@ -46,3 +43,4 @@
         </div>
     }
 </div>
+
