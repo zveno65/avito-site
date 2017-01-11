@@ -1,5 +1,10 @@
 ﻿@model Domain.Entities.An
 
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_CRUDLayout.cshtml";
+}
+
 <div class="panel">
     <div class="panel-heading">
         <h3>Подача нового объявления</h3>
@@ -7,12 +12,11 @@
     @using (Html.BeginForm())
     {
         <div class="panel-body">
-            @Html.HiddenFor(m => m.ID)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 List<string> field = new List<string>
                 {
-                    "AccountID","Account","Category","Liked","Photo","id","DateStart","DateFinish"
+                    "AccountID","Account","Category","Liked","Photo","ID","DateStart","DateFinish"
                 };
                 if (!field.Contains(property.PropertyName))
                 {
@@ -24,14 +28,16 @@
                                 @Html.DropDownList(property.PropertyName, (SelectList)ViewBag.DropDownValues, new { @class = "btn btn-default dropdown-toggle" })
                             </div>
                         }
-                        else if (property.PropertyName == "Description")
-                        {
-                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
-                        }
                         else
-                        {
-                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                        }
+                            if (property.PropertyName == "Description")
+                            {
+                                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                            }
+                            else
+                            {
+                                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            }
+                        @Html.ValidationMessage(property.PropertyName)
                     </div>
                 }
             }

@@ -21,7 +21,7 @@ namespace Domain.Concrete
             if (ac.ID == null || ac.ID == Guid.Empty)
             {
                 Account a = new Account();
-                a.ID = ac.ID;
+                a.ID = Guid.NewGuid();
                 a.Login = ac.Login;
                 a.Password = ac.Password;
                 a.E_mail = ac.E_mail;

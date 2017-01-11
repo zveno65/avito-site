@@ -21,6 +21,7 @@ namespace Domain.Entities
         public Guid AccountID { get; set; }
 
         [Display(Name = "Категория")]
+        [Required(ErrorMessage = "В чём дело???")]
         public Guid CategoryID { get; set; }
 
         [Column(TypeName = "date")]
@@ -33,12 +34,15 @@ namespace Domain.Entities
 
         [StringLength(50)]
         [Display(Name = "Название товара")]
+        [Required(ErrorMessage = "Введите название товара")]
         public string Name { get; set; }
 
         [Display(Name = "Цена")]
+        [Required(ErrorMessage = "Введите цену товара")]
         public decimal? Price { get; set; }
 
         [Display(Name = "Описание")]
+        [Required(ErrorMessage = "Введите описание товара")]
         public string Description { get; set; }
 
         public virtual Account Account { get; set; }
